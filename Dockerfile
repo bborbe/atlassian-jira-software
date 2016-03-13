@@ -5,11 +5,11 @@ ENV LANG en_US.UTF-8
 RUN locale-gen en_US.UTF-8
 
 RUN set -x \
-    && echo 'deb [arch=all] https://www.benjamin-borbe.de/aptly/atlassian default main' > /etc/apt/sources.list.d/all-atlassian-www.benjamin-borbe.de.list \
+    && echo 'deb [arch=all] http://aptly.benjamin-borbe.de/atlassian default main' > /etc/apt/sources.list.d/atlassian.list \
     && apt-get update --quiet \
     && apt-get install --quiet --yes --no-install-recommends confluence \
     && apt-get clean \
-    && echo "confluence.home = /var/lib/confluence" > /opt/confluence/WEB-INF/classes/confluence-init.properties
+    && echo 'confluence.home = /var/lib/confluence' > /opt/confluence/confluence/WEB-INF/classes/confluence-init.properties
 
 ADD server.xml /opt/confluence/conf/
 
