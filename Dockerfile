@@ -15,7 +15,8 @@ RUN set -x \
   && apt-get install --quiet --yes --no-install-recommends ca-certificates confluence \
   && apt-get clean \
   && echo 'confluence.home = /var/lib/confluence' > /opt/confluence/confluence/WEB-INF/classes/confluence-init.properties \
-  && sed -i 's/file:\/dev\/random/file:\/dev\/urandom/' /usr/lib/jvm/java-8-oracle/jre/lib/security/java.security
+  && sed -i 's/file:\/dev\/random/file:\/dev\/urandom/' /usr/lib/jvm/java-8-oracle/jre/lib/security/java.security \
+  && update-java-alternatives --set /usr/lib/jvm/java-8-oracle
 
 ADD server.xml /opt/confluence/conf/
 
