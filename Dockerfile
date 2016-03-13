@@ -13,10 +13,14 @@ RUN set -x \
   && echo "debconf shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections; echo "debconf shared/accepted-oracle-license-v1-1 seen true" | debconf-set-selections \
   && apt-get update --quiet \
   && apt-get install --quiet --yes --no-install-recommends ca-certificates confluence \
-  && apt-get clean \
+  && apt-get clean
+
+RUN set -x \
+  && update-java-alternatives --set /usr/lib/jvm/java-8-oracle \
   && echo 'confluence.home = /var/lib/confluence' > /opt/confluence/confluence/WEB-INF/classes/confluence-init.properties \
   && sed -i 's/file:\/dev\/random/file:\/dev\/urandom/' /usr/lib/jvm/java-8-oracle/jre/lib/security/java.security \
-  && update-java-alternatives --set /usr/lib/jvm/java-8-oracle
+  && sed -i 's/-Xms1024m/-Xms400m/' /opt/confluence/bin/setenv.sh \
+  && sed -i 's/-Xmx1024m/-Xmx400m/' /opt/confluence/bin/setenv.sh
 
 ADD server.xml /opt/confluence/conf/
 
