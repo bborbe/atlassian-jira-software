@@ -12,7 +12,7 @@ RUN set -x \
   && apt-key adv --keyserver keys.gnupg.net --recv-keys 7B2C3B0889BF5709A105D03AC2518248EEA14886 \
   && echo "debconf shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections; echo "debconf shared/accepted-oracle-license-v1-1 seen true" | debconf-set-selections \
   && apt-get update --quiet \
-  && apt-get install --quiet --yes --no-install-recommends confluence \
+  && apt-get install --quiet --yes --no-install-recommends ca-certificates ca-certificates-java confluence \
   && apt-get clean \
   && echo 'confluence.home = /var/lib/confluence' > /opt/confluence/confluence/WEB-INF/classes/confluence-init.properties \
   && sed -i 's/file:\/dev\/random/file:\/dev\/urandom/' /usr/lib/jvm/java-8-oracle/jre/lib/security/java.security
