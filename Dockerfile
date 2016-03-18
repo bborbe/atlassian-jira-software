@@ -20,7 +20,8 @@ RUN set -x \
   && echo 'confluence.home = /var/lib/confluence' > /opt/confluence/confluence/WEB-INF/classes/confluence-init.properties \
   && sed -i 's/file:\/dev\/random/file:\/dev\/urandom/' /usr/lib/jvm/java-8-oracle/jre/lib/security/java.security \
   && sed -i 's/-Xms1024m/-Xms600m/' /opt/confluence/bin/setenv.sh \
-  && sed -i 's/-Xmx1024m/-Xmx600m/' /opt/confluence/bin/setenv.sh
+  && sed -i 's/-Xmx1024m/-Xmx600m/' /opt/confluence/bin/setenv.sh \
+  && sed -i 's/-Djava.awt.headless=true/-Djava.awt.headless=true -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false/' /opt/confluence/bin/setenv.sh
 
 ADD server.xml /opt/confluence/conf/
 
