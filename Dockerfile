@@ -13,7 +13,7 @@ RUN set -x \
   && echo "debconf shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections; echo "debconf shared/accepted-oracle-license-v1-1 seen true" | debconf-set-selections \
   && apt-get update --quiet \
 	&& apt-get upgrade --quiet --yes \
-  && apt-get install --quiet --yes --no-install-recommends ca-certificates confluence \
+  && apt-get install --quiet --yes --no-install-recommends ca-certificates java-common confluence \
 	&& apt-get autoremove --yes \
   && apt-get clean
 
