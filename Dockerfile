@@ -11,11 +11,11 @@ RUN set -x \
   && echo 'deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' >> /etc/apt/sources.list.d/java.list \
   && apt-key adv --keyserver keys.gnupg.net --recv-keys 7B2C3B0889BF5709A105D03AC2518248EEA14886 \
   && echo "debconf shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections; echo "debconf shared/accepted-oracle-license-v1-1 seen true" | debconf-set-selections \
-  && apt-get update --quiet \
-	&& apt-get upgrade --quiet --yes \
-  && apt-get install --quiet --yes --no-install-recommends ca-certificates java-common confluence \
-	&& apt-get autoremove --yes \
-  && apt-get clean
+  && DEBIAN_FRONTEND=noninteractive apt-get update --quiet \
+	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade --quiet --yes \
+  && DEBIAN_FRONTEND=noninteractive apt-get install --quiet --yes --no-install-recommends ca-certificates java-common confluence \
+	&& DEBIAN_FRONTEND=noninteractive apt-get autoremove --yes \
+  && DEBIAN_FRONTEND=noninteractive apt-get clean
 
 RUN set -x \
   && update-java-alternatives --set /usr/lib/jvm/java-8-oracle \
