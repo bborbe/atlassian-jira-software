@@ -5,6 +5,13 @@ ENV LANG en_US.UTF-8
 RUN locale-gen en_US.UTF-8
 
 RUN set -x \
+  && DEBIAN_FRONTEND=noninteractive apt-get update --quiet \
+	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade --quiet --yes \
+  && DEBIAN_FRONTEND=noninteractive apt-get install --quiet --yes --no-install-recommends apt-transport-https \
+	&& DEBIAN_FRONTEND=noninteractive apt-get autoremove --yes \
+  && DEBIAN_FRONTEND=noninteractive apt-get clean
+
+RUN set -x \
   && echo 'deb [arch=all] https://aptly.tools.seibert-media.net/atlassian default main' > /etc/apt/sources.list.d/atlassian.list \
   && apt-key adv --keyserver keys.gnupg.net --recv-keys A87623C0AADAA6F0 \
   && echo 'deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' > /etc/apt/sources.list.d/java.list \
