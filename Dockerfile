@@ -20,7 +20,7 @@ RUN set -x \
   && echo "debconf shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections; echo "debconf shared/accepted-oracle-license-v1-1 seen true" | debconf-set-selections \
   && DEBIAN_FRONTEND=noninteractive apt-get update --quiet \
 	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade --quiet --yes \
-  && DEBIAN_FRONTEND=noninteractive apt-get install --quiet --yes --no-install-recommends ca-certificates oracle-java8-installer atlassian-confluence \
+  && DEBIAN_FRONTEND=noninteractive apt-get install --quiet --yes --no-install-recommends ca-certificates java-common oracle-java8-installer atlassian-confluence \
 	&& DEBIAN_FRONTEND=noninteractive apt-get autoremove --yes \
   && DEBIAN_FRONTEND=noninteractive apt-get clean
 
