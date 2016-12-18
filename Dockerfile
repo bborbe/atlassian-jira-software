@@ -32,7 +32,7 @@ RUN set -x \
   && sed -i 's/-Xmx1024m/-Xmx1024m/' /opt/confluence/bin/setenv.sh \
   && sed -i 's/-Djava.awt.headless=true/-Djava.awt.headless=true -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false/' /opt/confluence/bin/setenv.sh
 
-ADD server.xml /opt/confluence/conf/
+COPY server.xml /opt/confluence/conf/
 
 EXPOSE 8780 8709
 
