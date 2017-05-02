@@ -1,6 +1,6 @@
-# SSH
+# Atlassian Confluence Docker
 
-SSH Server
+Atlassian Confluence Docker
 
 ## Copyright and license
 
