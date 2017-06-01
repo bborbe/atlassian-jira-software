@@ -15,3 +15,11 @@ if [ ! "$branch" = "HEAD" ]; then
 	VERSION=${branch} make upload
 	VERSION=${branch} make clean || true
 fi
+
+branch=${GIT_BRANCH##origin/}
+if [ ! -z "$branch" ]; then
+	VERSION=${branch} make build
+	VERSION=${branch} make upload
+	VERSION=${branch} make clean || true
+fi
+
