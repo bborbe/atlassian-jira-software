@@ -17,7 +17,7 @@ RUN set -x \
 RUN locale-gen en_US.UTF-8
 
 RUN set -x \
-	&& echo 'deb [arch=all] https://aptly.tools.seibert-media.net/atlassian default main' > /etc/apt/sources.list.d/atlassian.list \
+	&& echo 'deb [arch=all] https://aptly.benjamin-borbe.de/atlassian default main' > /etc/apt/sources.list.d/atlassian.list \
 	&& apt-key adv --keyserver keys.gnupg.net --recv-keys A87623C0AADAA6F0 \
 	&& echo 'deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' > /etc/apt/sources.list.d/java.list \
 	&& echo 'deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' >> /etc/apt/sources.list.d/java.list \
