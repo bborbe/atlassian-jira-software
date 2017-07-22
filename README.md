@@ -1,6 +1,6 @@
-# Atlassian Confluence Docker
+# Atlassian Jira-Software Docker
 
-Atlassian Confluence Docker
+Atlassian Jira-Software Docker
 
 ## Copyright and license
 

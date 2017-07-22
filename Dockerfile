@@ -28,20 +28,20 @@ RUN set -x \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install --quiet --yes --no-install-recommends \
 	java-common \
 	oracle-java8-installer \
-	atlassian-confluence \
+	atlassian-jira-software \
 	&& DEBIAN_FRONTEND=noninteractive apt-get autoremove --yes \
 	&& DEBIAN_FRONTEND=noninteractive apt-get clean
 
 RUN set -x \
 	&& update-java-alternatives --set /usr/lib/jvm/java-8-oracle \
-	&& echo 'confluence.home = /var/lib/confluence' > /opt/confluence/confluence/WEB-INF/classes/confluence-init.properties \
+	&& echo 'jira-software.home = /var/lib/jira-software' > /opt/jira-software/jira-software/WEB-INF/classes/jira-software-init.properties \
 	&& sed -i 's/file:\/dev\/random/file:\/dev\/urandom/' /usr/lib/jvm/java-8-oracle/jre/lib/security/java.security \
-	&& sed -i 's/-Xms1024m/-Xms1024m/' /opt/confluence/bin/setenv.sh \
-	&& sed -i 's/-Xmx1024m/-Xmx1024m/' /opt/confluence/bin/setenv.sh \
-	&& sed -i 's/-Djava.awt.headless=true/-Djava.awt.headless=true -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false/' /opt/confluence/bin/setenv.sh
+	&& sed -i 's/-Xms1024m/-Xms1024m/' /opt/jira-software/bin/setenv.sh \
+	&& sed -i 's/-Xmx1024m/-Xmx1024m/' /opt/jira-software/bin/setenv.sh \
+	&& sed -i 's/-Djava.awt.headless=true/-Djava.awt.headless=true -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false/' /opt/jira-software/bin/setenv.sh
 
-COPY files/server.xml /opt/confluence/conf/
+COPY files/server.xml /opt/jira-software/conf/
 
 EXPOSE 8780 8709
 
-CMD ["/opt/confluence/bin/catalina.sh", "run"]
+CMD ["/opt/jira-software/bin/catalina.sh", "run"]
