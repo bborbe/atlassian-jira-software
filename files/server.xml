@@ -7,7 +7,7 @@
 	<Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener"/>
 	<Service name="Catalina">
 		<Connector port="8080" maxThreads="150" minSpareThreads="25" connectionTimeout="20000" enableLookups="false" maxHttpHeaderSize="8192" protocol="HTTP/1.1" useBodyEncodingForURI="true" redirectPort="8443" acceptCount="100"
-				   disableUploadTimeout="true" bindOnInit="false"/>
+				   disableUploadTimeout="true" bindOnInit="false" proxyName="jira.benjamin-borbe.de" proxyPort="443" scheme="https"/>
 		<Engine name="Catalina" defaultHost="localhost">
 			<Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="true">
 				<Context path="" docBase="${catalina.home}/atlassian-jira" reloadable="false" useHttpOnly="true">
