@@ -34,7 +34,7 @@ RUN set -x \
 
 RUN set -x \
 	&& update-java-alternatives --set /usr/lib/jvm/java-8-oracle \
-	&& echo 'jira-software.home = /var/lib/jira-software' > /opt/jira_software/atlassian-jira/WEB-INF/classes/jira-application.properties \
+	&& echo 'jira.home = /var/lib/jira-software' > /opt/jira_software/atlassian-jira/WEB-INF/classes/jira-application.properties \
 	&& sed -i 's/file:\/dev\/random/file:\/dev\/urandom/' /usr/lib/jvm/java-8-oracle/jre/lib/security/java.security \
 	&& sed -i 's/-Djava.awt.headless=true/-Djava.awt.headless=true -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false/' /opt/jira_software/bin/setenv.sh
 
