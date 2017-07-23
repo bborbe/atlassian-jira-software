@@ -1,10 +1,14 @@
 # Atlassian Jira-Software Docker
 
-Atlassian Jira-Software Docker
+## Version Schema
+
+JIRAVERISON-BUILDVERSION
+
+7.4.1-1.0.0 = Jira-Software 7.4.1 and Buildscripts 1.0.0
 
 ## Copyright and license
 
-    Copyright (c) 2016, Benjamin Borbe <bborbe@rocketnews.de>
+    Copyright (c) 2017, Benjamin Borbe <bborbe@rocketnews.de>
     All rights reserved.
     
     Redistribution and use in source and binary forms, with or without
