@@ -39,7 +39,10 @@ RUN set -x \
 	&& sed -i 's/-Djava.awt.headless=true/-Djava.awt.headless=true -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false/' /opt/jira_software/bin/setenv.sh
 
 COPY files/server.xml /opt/jira_software/conf/
+COPY files/entrypoint.sh /usr/local/bin/
+COPY files/service.sh /usr/local/bin/
 
-EXPOSE 8780 8709
+EXPOSE 8080
 
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/opt/jira_software/bin/catalina.sh", "run"]
