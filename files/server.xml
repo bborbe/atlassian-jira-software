@@ -1,15 +1,23 @@
-<?xml version="1.0"?>
-<Server port="18705" shutdown="SHUTDOWN" debug="0">
-	<Service name="Tomcat-Standalone">
-		<Connector port="8780" connectionTimeout="20000" redirectPort="8443" maxThreads="150" minSpareThreads="25" enableLookups="false" acceptCount="100" debug="0" URIEncoding="UTF-8" protocol="HTTP/1.1" address="0.0.0.0" disableUploadTimeout="true"
-				   maxHttpHeaderSize="8192" useBodyEncodingForURI="true" proxyName="jira-software.benjamin-borbe.de" proxyPort="443" scheme="https"/>
-		<Connector protocol="AJP/1.3" address="0.0.0.0" port="8709" redirectPort="8443" enableLookups="false" URIEncoding="UTF-8"/>
-		<Engine name="Standalone" defaultHost="localhost" debug="0">
-			<Host name="localhost" debug="0" appBase="webapps" unpackWARs="true" autoDeploy="false">
-				<Context path="" docBase="../jira-software" debug="0" reloadable="false" useHttpOnly="true">
+<?xml version="1.0" encoding="utf-8"?>
+<Server port="8005" shutdown="SHUTDOWN">
+	<Listener className="org.apache.catalina.startup.VersionLoggerListener"/>
+	<Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on"/>
+	<Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener"/>
+	<Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener"/>
+	<Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener"/>
+	<Service name="Catalina">
+		<Connector port="8080" maxThreads="150" minSpareThreads="25" connectionTimeout="20000" enableLookups="false" maxHttpHeaderSize="8192" protocol="HTTP/1.1" useBodyEncodingForURI="true" redirectPort="8443" acceptCount="100"
+				   disableUploadTimeout="true" bindOnInit="false"/>
+		<Engine name="Catalina" defaultHost="localhost">
+			<Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="true">
+				<Context path="" docBase="${catalina.home}/atlassian-jira" reloadable="false" useHttpOnly="true">
+					<Resource name="UserTransaction" auth="Container" type="javax.transaction.UserTransaction" factory="org.objectweb.jotm.UserTransactionFactory" jotm.timeout="60"/>
 					<Manager pathname=""/>
+					<JarScanner scanManifest="false"/>
 				</Context>
 			</Host>
+			<Valve className="org.apache.catalina.valves.AccessLogValve"
+				   pattern="%a %{jira.request.id}r %{jira.request.username}r %t &quot;%m %U%q %H&quot; %s %b %D &quot;%{Referer}i&quot; &quot;%{User-Agent}i&quot; &quot;%{jira.request.assession.id}r&quot;"/>
 		</Engine>
 	</Service>
 </Server>
