@@ -2,8 +2,9 @@
 
 ## Run
 
-mkdir -p /tmp/jira-app /tmp/jira-psql
+`mkdir -p /tmp/jira-app /tmp/jira-psql`
 
+```
 docker rm jira-db
 docker run \
 --name jira-db \
@@ -13,7 +14,9 @@ docker run \
 -p 5432:5432 \
 -v /tmp/jira-psql:/var/lib/postgresql/data \
 docker.io/postgres:9.5
+```
 
+```
 docker rm jira-app
 docker run \
 --name jira-app \
@@ -24,6 +27,7 @@ docker run \
 -v /tmp/jira-app:/var/lib/jira \
 --link jira-db:jira-db \
 docker.io/bborbe/atlassian-jira-software:7.4.1-1.0.6
+```
 
 Open http://localhost:8080
 
