@@ -10,7 +10,7 @@ ulimit -n 8192
 if [ "$1" = "/usr/local/bin/service.sh" ]; then
 	echo "configure ..."
 
-	HOSTNAME=${HOSTNAME:-"confluence.benjamin-borbe.de"}
+	HOSTNAME=${HOSTNAME:-"jira.benjamin-borbe.de"}
 	echo "set hostname to ${HOSTNAME}"
 	sed -i "s/{{HOSTNAME}}/${HOSTNAME}/" /opt/jira_software/conf/server.xml
 

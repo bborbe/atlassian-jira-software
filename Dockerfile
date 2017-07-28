@@ -45,4 +45,4 @@ COPY files/service.sh /usr/local/bin/
 EXPOSE 8080
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["/opt/jira_software/bin/catalina.sh", "run"]
+CMD ["/usr/local/bin/service.sh"]
