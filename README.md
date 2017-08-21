@@ -2,7 +2,9 @@
 
 ## Run
 
-`mkdir -p /tmp/jira-app /tmp/jira-psql`
+```
+mkdir -p /tmp/jira-app /tmp/jira-psql
+```
 
 ```
 docker rm jira-db
