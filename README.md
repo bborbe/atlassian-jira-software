@@ -28,7 +28,7 @@ docker run \
 -p 8080:8080 \
 -v /tmp/jira-app:/var/lib/jira \
 --link jira-db:jira-db \
-docker.io/bborbe/atlassian-jira-software:7.4.1-1.0.6
+docker.io/bborbe/atlassian-jira-software:7.5.0-1.1.2
 ```
 
 Open http://localhost:8080
@@ -42,7 +42,7 @@ Host: jira-db
 
 JIRAVERISON-BUILDVERSION
 
-7.4.1-1.0.0 = Jira-Software 7.4.1 and Buildscripts 1.0.0
+7.5.0-1.0.0 = Jira-Software 7.5.0 and Buildscripts 1.0.0
 
 ## Copyright and license
 
