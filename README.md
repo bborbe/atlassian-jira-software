@@ -32,7 +32,7 @@ docker run \
 -e SCHEMA=http \
 -e PORT=8080 \
 -p 8080:8080 \
--v /tmp/jira-app:/var/lib/jira \
+-v /tmp/jira-app:/var/lib/jira_software \
 --link jira-db:jira-db \
 docker.io/bborbe/atlassian-jira-software:7.5.0-1.1.2
 ```
