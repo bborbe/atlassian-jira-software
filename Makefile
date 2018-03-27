@@ -1,19 +1,23 @@
-VERSION ?= latest
 REGISTRY ?= docker.io
+IMAGE ?= bborbe/atlassian-jira-software
+ifeq ($(BUILD_VERSION),)
+	BUILD_VERSION := $(shell git fetch --tags; git describe --tags `git rev-list --tags --max-count=1`)
+endif
+ifeq ($(VENDOR_VERSION),)
+	VENDOR_VERSION := $(shell curl -s https://my.atlassian.com/download/feeds/jira-software.rss | grep -Po "(\d{1,2}\.){2,3}\d" | uniq)
+endif
+VERSION := $(VENDOR_VERSION)-$(BUILD_VERSION)
 
 default: build
 
-clean:
-	docker rmi $(REGISTRY)/bborbe/atlassian-jira-software:$(VERSION)
-
 build:
-	docker build --build-arg ATLASSIAN_VERSION=$(ATLASSIAN_VERSION) --no-cache --rm=true -t $(REGISTRY)/bborbe/atlassian-jira-software:$(VERSION) .
-
-run:
-	docker run -h example.com -p 8780:8780 -p 8709:8709 $(REGISTRY)/bborbe/atlassian-jira-software:$(VERSION)
-
-shell:
-	docker run -i -t $(REGISTRY)/bborbe/atlassian-jira-software:$(VERSION) /bin/bash
+	docker build --build-arg VENDOR_VERSION=$(VENDOR_VERSION) --no-cache --rm=true -t $(REGISTRY)/$(IMAGE):$(VERSION) .
 
 upload:
-	docker push $(REGISTRY)/bborbe/atlassian-jira-software:$(VERSION)
+	docker push $(REGISTRY)/$(IMAGE):$(VERSION)
+
+clean:
+	docker rmi $(REGISTRY)/$(IMAGE):$(VERSION)  || true
+
+version:
+	@echo $(VERSION)

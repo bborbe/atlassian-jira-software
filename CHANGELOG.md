@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.2.0
+
+- Add Jenkinsfile
+- use tar.gz instead Debian package
+- move /opt/jira_software -> /opt/jira
+- move /var/lib/jira_software -> /var/lib/jira
+
 ## 1.1.3
 
 - Update GPG Servers

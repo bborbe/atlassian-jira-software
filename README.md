@@ -4,13 +4,13 @@
 
 ### Create directories
 
-```
+```bash
 mkdir -p /tmp/jira-app /tmp/jira-psql
 ```
 
 ## Start Postgresql
 
-```
+```bash
 docker rm jira-db
 docker run \
 --name jira-db \
@@ -19,12 +19,12 @@ docker run \
 -e POSTGRES_PASSWORD=test123 \
 -p 5432:5432 \
 -v /tmp/jira-psql:/var/lib/postgresql/data \
-docker.io/postgres:9.5
+docker.io/postgres:9.6
 ```
 
 ## Start Jira
 
-```
+```bash
 docker rm jira-app
 docker run \
 --name jira-app \
@@ -32,25 +32,25 @@ docker run \
 -e SCHEMA=http \
 -e PORT=8080 \
 -p 8080:8080 \
--v /tmp/jira-app:/var/lib/jira_software \
+-v /tmp/jira-app:/var/lib/jira \
 --link jira-db:jira-db \
-docker.io/bborbe/atlassian-jira-software:7.5.0-1.1.2
+docker.io/bborbe/atlassian-jira-software:7.8.1-1.2.0
 ```
 
 ## Setup Jira
 
-Open http://localhost:8080
+Open [http://localhost:8080](http://localhost:8080)
 
-```
-Hostname: jira-db
-Port:     5432
-Database: jira
-Username: jira
-Password: test123
-```
+Database-Setup:
+
+* Host: jira-db
+* Port 5432
+* Database: jira
+* User: jira
+* Pass: test123
 
 ## Version Schema
 
 JIRAVERISON-BUILDVERSION
 
-7.5.0-1.0.0 = Jira-Software 7.5.0 and Buildscripts 1.0.0
+7.8.1-1.2.0 = Jira-Software 7.8.1 and Buildscripts 1.2.0

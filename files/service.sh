@@ -5,4 +5,4 @@ set -o nounset
 set -o pipefail
 set -o errtrace
 
-/opt/jira_software/bin/start-jira.sh -fg
+/opt/jira/bin/start-jira.sh -fg
