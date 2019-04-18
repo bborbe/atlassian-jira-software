@@ -12,7 +12,7 @@ RUN set -x \
 	locales \
 	apt-transport-https \
 	ca-certificates \
-	openjdk-8-jre-headless \
+	openjdk-8-jre \
 	wget \
 	&& DEBIAN_FRONTEND=noninteractive apt-get autoremove --yes \
 	&& DEBIAN_FRONTEND=noninteractive apt-get clean
