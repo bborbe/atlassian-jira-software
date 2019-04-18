@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.3.0
+
+- Update to Ubuntu 18.04
+- Use OpenJre 11
+
 ## 1.2.1
 
 - Add relaxedPathChar and relaxedQueryChars to server.xml

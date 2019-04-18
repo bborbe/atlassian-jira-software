@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 MAINTAINER Benjamin Borbe <bborbe@rocketnews.de>
 ARG VENDOR_VERSION
 
@@ -12,27 +12,13 @@ RUN set -x \
 	locales \
 	apt-transport-https \
 	ca-certificates \
+	openjdk-11-jre \
 	wget \
 	&& DEBIAN_FRONTEND=noninteractive apt-get autoremove --yes \
 	&& DEBIAN_FRONTEND=noninteractive apt-get clean
 RUN locale-gen en_US.UTF-8
 
-RUN set -x \
-	&& echo 'deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' > /etc/apt/sources.list.d/java.list \
-	&& echo 'deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main' >> /etc/apt/sources.list.d/java.list \
-	&& apt-key adv --keyserver pool.sks-keyservers.net --recv-keys 7B2C3B0889BF5709A105D03AC2518248EEA14886 \
-	&& echo "debconf shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections; echo "debconf shared/accepted-oracle-license-v1-1 seen true" | debconf-set-selections \
-	&& DEBIAN_FRONTEND=noninteractive apt-get update --quiet \
-	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade --quiet --yes \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install --quiet --yes --no-install-recommends \
-	java-common \
-	oracle-java8-installer \
-	&& DEBIAN_FRONTEND=noninteractive apt-get autoremove --yes \
-	&& DEBIAN_FRONTEND=noninteractive apt-get clean
-
-RUN set -x \
-	&& update-java-alternatives --set /usr/lib/jvm/java-8-oracle \
-	&& sed -i 's/file:\/dev\/random/file:\/dev\/urandom/' /usr/lib/jvm/java-8-oracle/jre/lib/security/java.security
+RUN sed -i 's/file:\/dev\/random/file:\/dev\/urandom/' /etc/java-11-openjdk/security/java.security
 
 RUN set -x \
 	&& mkdir -p /opt \
