@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.3.1
+
+- Use OpenJre 8
+
 ## 1.3.0
 
 - Update to Ubuntu 18.04

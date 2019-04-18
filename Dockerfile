@@ -12,13 +12,13 @@ RUN set -x \
 	locales \
 	apt-transport-https \
 	ca-certificates \
-	openjdk-11-jre \
+	openjdk-8-jre-headless \
 	wget \
 	&& DEBIAN_FRONTEND=noninteractive apt-get autoremove --yes \
 	&& DEBIAN_FRONTEND=noninteractive apt-get clean
 RUN locale-gen en_US.UTF-8
 
-RUN sed -i 's/file:\/dev\/random/file:\/dev\/urandom/' /etc/java-11-openjdk/security/java.security
+RUN sed -i 's/file:\/dev\/random/file:\/dev\/urandom/' /etc/java-8-openjdk/security/java.security
 
 RUN set -x \
 	&& mkdir -p /opt \
